@@ -46,3 +46,16 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 	end,
 	group = group,
 })
+
+local format = function()
+	vim.lsp.buf.format({
+		bufnr = vim.api.nvim_get_current_buf(),
+		async = false,
+		timeout_ms = 2000,
+		filter = function(client)
+			return client.name == "null-ls"
+		end,
+	})
+end
+
+vim.api.nvim_create_user_command("Format", format, { nargs = "?" })

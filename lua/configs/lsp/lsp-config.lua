@@ -52,7 +52,7 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 local util = require("vim.lsp.util")
 
 vim.diagnostic.config({
-	virtual_text = false,
+	virtual_text = true,
 	signs = true,
 	underline = true,
 	update_in_insert = false,

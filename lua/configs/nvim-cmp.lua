@@ -46,17 +46,50 @@ local has_words_before = function()
 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
+vim.api.nvim_set_hl(0, "MyColor", { bg = "#422042" })
+
 cmp.setup({
 	preselect = cmp.PreselectMode.None,
 
+	window = {
+		completion = {
+			winhighlight = "Normal:DiffChange,FloatBorder:DiffChange,CursorLine:Cursor,Search:Error",
+		},
+		documentation = {
+			winhighlight = "Normal:DiffChange,FloatBorder:DiffChange,Search:None",
+		},
+	},
+
 	formatting = {
 		fields = { "kind", "abbr", "menu" },
-		format = lspkind.cmp_format({
-			mode = "symbol",
-			maxwidth = 50,
-			symbol_map = symbol_map,
-			ellipsis_char = "...",
-		}),
+		format = function(entry, vim_item)
+			local kind = vim_item.kind
+
+			vim_item.kind = (symbol_map[vim_item.kind] or "?")
+
+			vim_item.menu = "" .. kind .. ""
+
+			local item = entry:get_completion_item()
+
+			if item.detail then
+				vim_item.menu = "[" .. vim_item.menu .. "]" .. " 📎 " .. item.detail
+			end
+
+			if string.len(vim_item.abbr) >= 30 then
+				vim_item.abbr = string.sub(vim_item.abbr, 1, 27) .. "..."
+			end
+
+			if string.len(vim_item.menu) >= 30 then
+				vim_item.menu = string.sub(vim_item.menu, 1, 27) .. "..."
+			end
+
+			return vim_item
+		end,
+		--[[ format = lspkind.cmp_format({ ]]
+		--[[ 	maxwidth = 50, ]]
+		--[[ 	symbol_map = symbol_map, ]]
+		--[[ 	ellipsis_char = "...", ]]
+		--[[ }), ]]
 	},
 
 	snippet = {
@@ -76,19 +109,6 @@ cmp.setup({
 	confirm_opts = {
 		behavior = cmp.ConfirmBehavior.Replace,
 		select = false,
-	},
-
-	window = {
-		completion = {
-			winhighlight = "Normal:Normal,FloatBorder:Normal,CursorLine:Visual,Search:None",
-			col_offset = -3,
-			side_padding = 0,
-			border = "rounded",
-		},
-		documentation = {
-			winhighlight = "Normal:Normal,FloatBorder:Normal,Search:None",
-			border = "rounded",
-		},
 	},
 
 	mapping = {

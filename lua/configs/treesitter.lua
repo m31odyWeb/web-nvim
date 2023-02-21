@@ -9,6 +9,7 @@ require("nvim-treesitter.configs").setup({
 		"jsonc",
 		"javascript",
 		"typescript",
+		"markdown_inline",
 		"tsx",
 		"markdown",
 		"svelte",

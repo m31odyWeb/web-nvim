@@ -1,7 +1,10 @@
-require("lspsaga").init_lsp_saga({
+require("lspsaga").setup({
 	-- Options with default value
 	-- "single" | "double" | "rounded" | "bold" | "plus"
-	border_style = "rounded",
+	ui = {
+		theme = "round",
+		border = "double",
+	},
 	--the range of 0 for fully opaque window (disabled) to 100 for fully
 	--transparent background. Values between 0-30 are typically most useful.
 	saga_winblend = 0,
@@ -36,6 +39,11 @@ require("lspsaga").init_lsp_saga({
 		virtual_text = true,
 	},
 
+	finder = {
+		max_height = 0.5,
+		width = 40,
+	},
+
 	-- finder icons
 	finder_icons = {
 		def = "  ",
@@ -53,10 +61,12 @@ require("lspsaga").init_lsp_saga({
 		tabe = "t",
 		quit = "q",
 	},
+
 	code_action_keys = {
 		quit = "q",
 		exec = "<CR>",
 	},
+
 	definition_action_keys = {
 		edit = "<C-c>o",
 		vsplit = "<C-c>v",
@@ -64,7 +74,9 @@ require("lspsaga").init_lsp_saga({
 		tabe = "<C-c>t",
 		quit = "q",
 	},
+
 	rename_action_quit = "<C-c>",
+
 	rename_in_select = true,
 	-- show symbols in winbar must nightly
 	-- in_custom mean use lspsaga api to get symbols

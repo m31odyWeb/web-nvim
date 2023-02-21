@@ -38,6 +38,13 @@ local schemas = {
 		},
 		url = "https://json.schemastore.org/prettierrc.json",
 	},
+	{
+		description = "Chrome manifest.json",
+		fileMatch = {
+			"manifest.json",
+		},
+		url = "https://json.schemastore.org/chrome-manifest",
+	},
 }
 
 local function extend(tab1, tab2)

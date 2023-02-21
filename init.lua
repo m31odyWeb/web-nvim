@@ -9,7 +9,7 @@ require("configs.utils")
 require("configs")
 
 --COLOR SCHEME--
-require("themes.one-dark")
+require("themes.kanagawa")
 --[[ require("themes") ]]
 
 --FILE EXPLORERS--
@@ -52,6 +52,9 @@ require("configs.dressing")
 
 --LSP POPUPS--
 require("configs.lsp-saga")
+
+--DAP--
+require("configs.dap")
 
 --LANGUAGE SERVERS--
 require("configs.lsp.mason")

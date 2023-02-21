@@ -99,10 +99,14 @@ return require("packer").startup(function()
 	use({ "jose-elias-alvarez/null-ls.nvim" })
 	use({ "jose-elias-alvarez/typescript.nvim" })
 
+	--DEBUG ADAPTERS--
+	use({ "mfussenegger/nvim-dap" })
+
 	--PACKAGE MANAGER--
 	use({ "williamboman/mason.nvim" })
 	use({ "williamboman/mason-lspconfig.nvim" })
 	use({ "jayp0521/mason-null-ls.nvim" })
+	use({ "jay-babu/mason-nvim-dap.nvim" })
 
 	-- FUZZY FINDER--
 	use({ "nvim-telescope/telescope.nvim" })
@@ -140,6 +144,7 @@ return require("packer").startup(function()
 	use({ "rebelot/kanagawa.nvim" })
 	use({ "folke/tokyonight.nvim" })
 	use({ "EdenEast/nightfox.nvim" })
+	use({ "catppuccin/nvim", as = "catppuccin" })
 
 	if packer_bootstrap then
 		require("packer").sync()

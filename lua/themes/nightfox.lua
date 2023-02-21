@@ -32,4 +32,4 @@ local theme = require("nightfox").setup({
 	groups = {},
 })
 
-return theme
+vim.cmd("colorscheme nightfox")

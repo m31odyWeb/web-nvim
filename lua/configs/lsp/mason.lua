@@ -13,6 +13,11 @@ if not mason_null_ls_status then
 	return
 end
 
+local mason_dap_status, mason_dap = pcall(require, "mason-nvim-dap")
+if not mason_null_ls_status then
+	return
+end
+
 mason.setup({
 	ui = {
 		icons = {
@@ -41,7 +46,9 @@ mason_lspconfig.setup({
 mason_null_ls.setup({
 	ensure_installed = {
 		"prettierd",
+		"prettier",
 		"stylua",
+		"eslint",
 		"eslint_d",
 		"cspell",
 		"stylelint",

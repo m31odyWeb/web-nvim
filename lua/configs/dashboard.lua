@@ -1,6 +1,4 @@
-local db = require("dashboard")
-
-db.custom_header = {
+local custom_header = {
 	"                                                                                                   ",
 	"                                                                                                   ",
 	"               .!!:  .!!:  .!!^  ~!!!!!!^ :!!!!!^.  ^!!    ^!~ :!!.   :!77!::~77!:                 ",
@@ -18,38 +16,53 @@ db.custom_header = {
 	"                                                                                                   ",
 }
 
-db.custom_center = {
-	--{icon = '  ',
-	--desc = 'Recently latest session                  ',
-	--shortcut = 'SPC s l',
-	--action ='SessionLoad'},
-	{
-		icon = "  ",
-		desc = "Recently opened files                   ",
-		action = "Telescope oldfiles",
-		shortcut = "SPC f r",
-	},
-	{
-		icon = "  ",
-		desc = "Find  File                              ",
-		action = "Telescope find_files",
-		shortcut = "SPC f f",
-	},
-	{
-		icon = "  ",
-		desc = "Find  word                              ",
-		action = "Telescope live_grep",
-		shortcut = "SPC f g",
-	},
-	{
-		icon = "  ",
-		desc = "Git GUI                                 ",
-		action = "Telescope lazygit",
-		shortcut = "SPC g g",
-	},
+require("dashboard").setup({
+	theme = "hyper", -- "doom"
+	config = {
+		header = custom_header,
+		weak_header = {
+			enabled = true,
+		},
+		shortcut = {
+			--{icon = '  ',
+			--desc = 'Recently latest session                  ',
+			--shortcut = 'SPC s l',
+			--action ='SessionLoad'},
+			{
+				icon = "  ",
+				group = "Label",
+				desc = "Recently opened files",
+				action = "Telescope oldfiles",
+				key = "SPC f r",
+			},
+			{
+				icon = "  ",
 
-	--{icon = '  ',
-	--desc = 'Open NeoVim config                      ',
-	--action = 'Telescope  path=' .. home ..'/.dotfiles',
-	--shortcut = 'SPC f d'},
-}
+				group = "DiagnosticHint",
+				desc = "Find  File",
+				action = "Telescope find_files",
+				key = "SPC f f",
+			},
+			{
+				icon = "  ",
+				desc = "Find  word",
+				group = "Number",
+				action = "Telescope live_grep",
+				key = "SPC f g",
+			},
+			{
+				icon = "  ",
+				desc = "Git GUI",
+				group = "Number",
+				action = "Telescope lazygit",
+				key = "SPC g g",
+			},
+
+			--{icon = '  ',
+			--desc = 'Open NeoVim config                      ',
+			--action = 'Telescope  path=' .. home ..'/.dotfiles',
+			--shortcut = 'SPC f d'},
+		},
+		project = { limit = 8, action = "Telescope find_files cwd=" },
+	},
+})

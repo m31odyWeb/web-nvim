@@ -11,6 +11,21 @@ local opts = {
 
 local mappings = {
 	["w"] = { "<cmd>w!<CR>", "Save" },
+	G = {
+		name = "Global commands",
+		c = { "<cmd>!npm run fix:code<cr>", "Fix code problems(npm run fix:code)" },
+		s = { "<cmd>!npm run fix:styles<cr>", "Fix styles problems(npm run fix:styles)" },
+		f = { "<cmd>!npm run format<cr>", "Format(npm run format)" },
+		a = { "<cmd>!npm run fix:and:format<cr>", "Fix all problems and format(npm run fix:and:format)" },
+	},
+	x = {
+		name = "Global commands",
+		x = {
+			"<cmd>Format<CR>",
+			"Format buffer",
+		},
+	},
+
 	["s"] = { "<cmd>:noautocmd w<CR>", "Save without formating" },
 	["q"] = { "<cmd>lua require('configs.utils').smart_quit()<CR>", "Quit" },
 	["/"] = { "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", "Comment" },
