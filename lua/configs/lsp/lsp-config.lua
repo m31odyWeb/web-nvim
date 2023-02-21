@@ -39,7 +39,7 @@ local servers = {
 	"html",
 	"jsonls",
 	"tailwindcss",
-	"sumneko_lua",
+	"lua_ls",
 	"prismals",
 	"tsserver",
 	"svelte",
